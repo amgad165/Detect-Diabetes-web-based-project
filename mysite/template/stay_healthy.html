@@ -1,0 +1,223 @@
+{% extends "basic.html" %}
+{% load static %}
+
+{% block statics %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+<link href="https://unicons.iconscout.com/release/v3.0.6/css/line.css" rel="stylesheet">
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<style>
+  
+.card-header{
+    background-color: #006778!important;
+    color: #fff!important;
+  
+  }
+.card{
+padding-left: 0;
+padding-right: 0;
+
+  }
+  .group_header{
+    color: whitesmoke;
+  }
+</style>
+ {% endblock %}
+{% block content %} 
+<aside class="sidebar position-fixed top-0 left-0 overflow-auto h-100 float-left" id="show-side-navigation1">
+  <i class="uil-bars close-aside" data-close="show-side-navigation1"></i>
+  <div class="sidebar-header d-flex justify-content-center align-items-center px-3 py-4">
+    <img
+         class="rounded-pill img-fluid"
+         width="100"
+         src="https://images.everydayhealth.com/images/diabetes-awareness-month-1440x810.jpg"
+         alt="">
+    <div class="ms-2">
+      <h5 class="fs-6 mb-0">
+        <a class="text-decoration-none" href="#">Diabetes Testing</a>
+      </h5>
+      <p class="mt-1 mb-0">Test your Diabetes Using AI</p>
+    </div>
+  </div>
+
+
+
+  <ul class=" list-unstyled">
+    <li >
+      <i class="uil-estate fa-fw"></i><a  href="{% url 'home' %}"> Homepage</a>
+    </li>
+    
+    <li >
+      <i class="uil-panel-add"></i><a  href="{% url 'dashboard' %}"> Dashboard</a>
+    </li>
+
+    <li >
+        <i class="uil-analysis"></i><a  href="{% url 'prediction' %}">Prediction</a>
+      </li>
+      <li >
+        <i class="uil-hospital"></i><a  href="{% url 'stay_healthy' %}">Stay Healthy</a>
+      </li>
+
+      <li >
+        <i class="uil-layer-group"></i><a  href="{% url 'about_us' %}">About Us</a>
+      </li>
+
+      <li >
+        <i class="uil-phone-volume"></i><a  href="{% url 'contact_us' %}">Contact Us</a>
+      </li> 
+
+
+
+
+  </ul>
+</aside>
+
+<section id="wrapper">
+  <nav class="navbar navbar-expand-md">
+    <div class="container-fluid mx-2">
+      <div class="navbar-header">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#toggle-navbar" aria-controls="toggle-navbar" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="uil-bars text-white"></i>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="toggle-navbar">
+        <ul class="navbar-nav ms-auto">
+ 
+          
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i data-show="show-side-navigation1" class="uil-bars show-side-btn"></i>
+            </a>
+     
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+        <div class="row justify-content-center">
+      <div style="margin-top: 20px;" class="group_header">
+        <h1>Steps to Help You Stay Healthy With Diabetes</h1>
+       
+      </div>
+    </div>
+<div style="margin-top: 20px;" class="row">
+  <div class="col-1"></div>
+
+<div class="card col-11" style="width: 80rem;">
+  <div class="card-header">
+   <h4>STEP 1: Ask your doctor to refer you to Diabetes Self-Management Education and Support (DSMES) services.</h4> 
+  </div>
+<div class="card-body">
+    <p class="card-title">DSMES services include a health care team that will teach you how to stay healthy and how to make what you learn a regular part of your life. DSMES services will help you make better decisions about your diabetes, work with your health care team to get the support you need, and learn the skills to take care of yourself.
+
+    </p>
+  </div>
+</div>
+</div>
+
+<div style="margin-top: 20px;" class="row">
+<div class="col-1"></div>
+
+<div class="card col-11" style="width: 80rem;">
+  <div class="card-header">
+   <h4>STEP 2: Know your diabetes ABCs.</h4> 
+  </div>
+  
+<div class="card-body">
+  <div  class="row">
+    <div class="col-7">
+  <p>Talk to your health care team about how to manage your ABC numbers&mdash;A1C, blood pressure,
+     and cholesterol&mdash;and how to quit smoking. These actions can help lower your chance of having a heart attack, stroke,
+      or other diabetes problems. Use the worksheet on page 5 to keep track of your ABC numbers.</p>
+  <ul>
+  <li><strong>A IS FOR THE A1C TEST (A-ONE-C)</strong>
+  <ul>
+  <li>A1C is a blood test that measures your average blood sugar level over the past 3 months. It is different from the blood sugar checks you might do each day.</li>
+  <li>The A1C goal for many people with diabetes is below 7. Ask your health care team what your goal should be.</li>
+  </ul>
+  </li>
+</div>
+<div class="col-1">
+</div>
+<div class="col-3"> <img src="{% static 'images/abc.png' %}" class="img-fluid" alt="Diabetes A B C s" title="abc"></div>
+</div>
+  <li><strong>B </strong><strong>IS FOR BLOOD PRESSURE<br>
+  </strong>Blood pressure is the force of blood against the walls of your blood vessels. If your blood pressure gets too high, it makes your heart work too hard. Your blood pressure goal should be below 140/90 unless your doctor helps you set a different goal.</li>
+  <li><strong>C </strong><strong>IS FOR CHOLESTEROL (KO-LESS-TUH-RUHL)</strong> There are two kinds of cholesterol in your blood: LDL and HDL. LDL or &ldquo;bad&rdquo; cholesterol can build up and clog your blood vessels. HDL or &ldquo;good&rdquo; cholesterol helps remove the &ldquo;bad&rdquo; cholesterol from your blood vessels.
+  <ul>
+  <li>Ask your health care team what your cholesterol numbers should be.</li>
+  <li>If your numbers are not where they should be, ask what you can do about it.</li>
+  </ul>
+  </li>
+  <li><strong>S </strong><strong>IS FOR SMOKING<br>
+  </strong>Smoking raises your blood sugar, blood pressure, and cholesterol levels. If you quit smoking, you&rsquo;ll lower your risk of heart attack, stroke, nerve disease, kidney disease, and oral disease.</li>
+  
+  </div>
+</div>
+
+</div>
+<div style="margin-top: 20px;" class="row">
+  <div class="col-1"></div>
+
+<div class="card col-11" style="width: 80rem;">
+  <div class="card-header">
+   <h4>STEP 3: Learn how to live well with diabetes.</h4> 
+  </div>
+<div class="card-body">
+  <h3>Learn coping skills.</h3>
+  <ul>
+  <li>Having diabetes can be overwhelming at times. But there are things you can do to cope with diabetes and manage stress. Spend time with your friends or do something you enjoy&mdash;like gardening, taking a walk, working on a hobby, or listening to your favorite music. For other ideas, visit CDC&rsquo;s <a style="background-color: #ffffff;" href="https://www.cdc.gov/diabetes/ndep/people-with-diabetes/ten-tips-coping-diabetes-distress.html">10 Tips for Coping with</a> <a style="background-color: #ffffff;" href="https://www.cdc.gov/diabetes/ndep/people-with-diabetes/ten-tips-coping-diabetes-distress.html">Diabetes Distress </a>web page.</li>
+  <li>Ask for help if you feel down. Talking about your feelings with a mental health counselor, support group, clergy member, friend, or family member who will listen to your concerns might help you feel better.</li>
+  <li>If you feel down on most days, you may be depressed. Talk to your health care team, your spiritual counselor, or some other person you trust. They may be able help you get the support you need.</li>
+  </ul>
+  <h3>Make healthy food choices.</h3>
+  <ul class="false">
+  <li>Work with your health care team to make a meal plan that fits your life. Ask for a referral to a registered dietitian nutritionist (RDN) who knows about diabetes and can help you create a personal meal plan to meet your specific needs.</li>
+  <li>Keep a food record or journal to keep track of how you are doing with your meal plan.</li>
+  <li>Plan ahead. Plan your food each week so you have healthy options at home. When you go out, carry healthy snacks&mdash;like baby carrots, sliced apples, or nuts&mdash;with you.</li>
+  </ul>
+  <ul class="false">
+  <li>Ask your diabetes care and education specialist, RDN, or health care team for help learning skills such as reading nutrition facts and labels, managing portion sizes, and making healthy food choices when eating out.</li>
+  </ul>
+  <h3>Be physically active.</h3>
+  <ul class="false">
+  <li>Set a goal to be physically active for 30 minutes most days of the week. Start slow by taking a 10-minute walk 3 times a day.</li>
+  <li>Twice a week, work to increase your muscle strength. Use stretch bands, do yoga, or do heavy gardening like digging and planting with tools.</li>
+  </ul>
+  <h3>Know what to do every day.</h3>
+  <ul>
+  <li>Take your medicines even when you feel good. Tell your doctor if you cannot afford your medicine or if you experience any side effects.</li>
+  <li>Check your feet every day for cuts, blisters, red spots, and swelling. Call your health care team right away about any sores.</li>
+  <li>Brush your teeth and floss every day to keep your mouth, teeth, and gums healthy.</li>
+  <li>Ask your health care team how often and when to check your blood sugar.</li>
+  <li>Keep track of your blood sugar and keep a record of your numbers.</li>
+  <li>Check your blood pressure if your doctor tells you to and keep a record of your numbers.</li>
+  <li>Don&rsquo;t smoke. If you already smoke, ask for help to quit.</li>
+  </ul>
+    </p>
+  </div>
+</div>
+</div>
+    </section>
+
+
+
+
+
+
+  </div>
+</div>
+</section>
+
+
+
+
+<script src="{% static 'js/dashboard.js' %}"></script>
+
+
+{% endblock %}
